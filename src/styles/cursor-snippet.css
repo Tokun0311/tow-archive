@@ -1,0 +1,25 @@
+/* --- ZiCang hamster cursor --- */
+html,
+body {
+  cursor: url("/cursors/zicang-default.png") 10 8, auto;
+}
+
+a,
+button,
+select,
+label,
+summary,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  cursor: url("/cursors/zicang-pointer.png") 10 8, pointer;
+}
+
+/* --- Brand styling: green, bold, more breathing room --- */
+.brand {
+  color: #087F5B;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  word-spacing: 0.42em;
+}
