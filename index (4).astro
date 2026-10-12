@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection} from 'astro:content';
+const writings=(await getCollection('entries',({data})=>!data.draft)).map(e=>({title:e.data.title,date:e.data.date,tags:e.data.tags,kind:'TEXT',url:`/writing/${e.id}/`}));
+const photos=(await getCollection('photographs',({data})=>!data.draft)).map(e=>({title:e.data.title,date:e.data.date,tags:e.data.tags,kind:'IMAGE',url:`/photography/${e.id}/`}));
+const all=[...writings,...photos].sort((a,b)=>b.date.valueOf()-a.date.valueOf());
+const tags=[...new Set(all.flatMap(x=>x.tags))].sort();
+---
+<Base title="Archive — Tow Deng"><div class="eyebrow" style="margin-top:42px">Collection / 03</div><h1 class="page-title">Archive.</h1><p class="intro">A chronological index of writing and images. Follow dates, formats, and recurring questions across the collection.</p><div class="stack"><div class="section-head"><h2>Subjects</h2><span>{tags.length} tags</span></div><div class="tags">{tags.map(t=><span class="tag">{t}</span>)}</div></div><div class="stack"><div class="section-head"><h2>All records</h2><span>{all.length} indexed</span></div><ul class="entries">{all.map((e,i)=><li class="entry"><span class="date">{e.date.toISOString().slice(0,10)}</span><a href={e.url}>{e.title}</a><span class="meta">{e.kind}</span><span class="no">{String(i+1).padStart(2,'0')}</span></li>)}</ul></div></Base>
