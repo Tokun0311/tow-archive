@@ -1,5 +1,5 @@
-/* Lichuan Tow Deng: white paper, graphite ink, warm-grey rules. */
-:root { --paper:#fff; --ink:#292d28; --quiet:#777970; --rule:#d8dad3; font-family:Arial,'Helvetica Neue','Noto Sans',sans-serif; color:var(--ink); background:var(--paper); font-synthesis:none }
+/* Tow Archive: white background, vivid cobalt-blue ink and crisp blue rules. */
+:root { --paper:#fff; --ink:#2448c5; --quiet:#627ab3; --rule:#c5d2f7; font-family:Arial,'Helvetica Neue','Noto Sans',sans-serif; color:var(--ink); background:var(--paper); font-synthesis:none }
 * { box-sizing:border-box }
 body { margin:0; background:var(--paper) }
 a { color:inherit; text-decoration:none }
@@ -40,7 +40,11 @@ button, select { font:inherit }
 .tag { border:1px solid var(--rule);font-size:12px;padding:4px 9px }
 .note { font-size:12px;line-height:1.65 }
 .photo-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px }
-.photo-box { aspect-ratio:4/3;background:#f5f5f2;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;color:var(--quiet);overflow:hidden }
+.photo-box { aspect-ratio:4/3;background:#f4f7ff;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;color:var(--quiet);overflow:hidden }
 .photo-box img { width:100%;height:100%;object-fit:cover }
 .photo-caption { font-size:12px;margin:9px 0 20px }
 @media(max-width:650px) { .frame { padding:20px 18px 50px } .archive { padding-top:24px } .filters { margin-bottom:20px;gap:14px } .filter-languages { gap:14px } .archive-entry { grid-template-columns:83px minmax(0,1fr);gap:12px;padding:16px 0 } .entry-type { display:none } .archive-entry time { font-size:11px } .photo-grid { grid-template-columns:1fr } }
+
+/* Subtle interaction without adding card-like visual weight. */
+.archive-entry a:hover { color:#12329f }
+.filter-languages button:hover { color:var(--ink) }
