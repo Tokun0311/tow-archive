@@ -6,6 +6,6 @@ const entries = defineCollection({
 });
 const photographs = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/data/photography' }),
-  schema: z.object({ title: z.string(), date: z.coerce.date(), location: z.string().optional(), description: z.string(), tags: z.array(z.string()).default([]), images: z.array(z.object({src:z.string(), alt:z.string()})).default([]), draft: z.boolean().default(false) })
+  schema: z.object({ title: z.string(), date: z.coerce.date(), location: z.string().optional(), language: z.string().default('EN'), description: z.string(), tags: z.array(z.string()).default([]), images: z.array(z.object({src:z.string(), alt:z.string()})).default([]), draft: z.boolean().default(false) })
 });
 export const collections = { entries, photographs };
