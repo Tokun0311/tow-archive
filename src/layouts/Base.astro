@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-const { title = 'Lichuan Tow Deng', description = 'Writing, photography and research by Lichuan Tow Deng.' } = Astro.props;
+const { title = 'Tow Archive', description = 'Writing, photography and research by Lichuan Tow Deng.' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -13,7 +13,7 @@ const { title = 'Lichuan Tow Deng', description = 'Writing, photography and rese
   <body>
     <div class="frame">
       <header class="mast">
-        <a class="brand" href="/">Lichuan Tow Deng</a>
+        <a class="brand" href="/">Tow Archive</a>
         <nav aria-label="Main navigation"><a href="/about/" aria-current={Astro.url.pathname === '/about/' ? 'page' : undefined}>About</a></nav>
       </header>
       <main><slot /></main>
