@@ -51,7 +51,7 @@ button, select { font:inherit }
 
 
 /* TOW ARCHIVE: richer green and spacious brand lettering */
-.brand { color:#087f5b; font-weight:700; text-transform:uppercase; letter-spacing:.09em; word-spacing:.42em; }
+.brand { color:#087f5b; font-weight:700; text-transform:uppercase; letter-spacing:.075em; word-spacing:.16em; }
 
 /* Archive tag controls, restrained outlines and active selection */
 .filter-languages { gap:8px; }
