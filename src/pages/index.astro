@@ -4,7 +4,9 @@ import { getCollection } from 'astro:content';
 
 const writing = await getCollection('entries', ({ data }) => !data.draft);
 const photography = await getCollection('photographs', ({ data }) => !data.draft);
+const exhibitions = await getCollection('exhibitions');
 const items = [
+  ...exhibitions.map((item) => ({ id: item.id, title: item.data.title, date: item.data.visitedOn, language: "all", type: "Exhibition / Event", url: `/exhibitions/${item.id}/` })),
   ...writing.map((item) => ({
     id: item.id,
     title: item.data.title,
@@ -61,7 +63,7 @@ const items = [
   let activeLanguage = 'all';
 
   function update() {
-    const visible = rows.filter(row => activeLanguage === 'all' || row.dataset.language === activeLanguage);
+    const visible = rows.filter(row => activeLanguage === 'all' || row.dataset.language === activeLanguage || row.dataset.language === 'all');
     const sorted = [...visible].sort((a, b) => {
       const aTime = Date.parse(a.dataset.date || '');
       const bTime = Date.parse(b.dataset.date || '');

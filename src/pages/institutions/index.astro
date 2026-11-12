@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection} from 'astro:content';
+const items=(await getCollection('institutions')).sort((a,b)=>a.data.name.localeCompare(b.data.name));
+---
+<Base title="Institutions & Spaces | TOW ARCHIVE"><section class="archive"><h1 class="section-title">Institutions & Spaces</h1><p class="section-lead">Browse connected records.</p><ol class="archive-list">{items.map(item=><li class="archive-entry"><span class="eyebrow">INDEX</span><a href={`/institutions/${item.id}/`}>{item.data.name}</a></li>)}</ol></section></Base>

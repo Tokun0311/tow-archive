@@ -70,3 +70,16 @@ html, body { cursor:url('/cursors/zicang-default.png') 10 8, auto; }
 a, button, select, label, summary, [role="button"], input[type="submit"], input[type="button"] {
   cursor:url('/cursors/zicang-pointer.png') 10 8, pointer;
 }
+
+/* Research archive additions */
+.mast { align-items:center; flex-wrap:wrap }
+.mast nav { display:flex; flex-wrap:wrap; gap:17px }
+.mast nav a { white-space:nowrap }
+.section-title { font-size:clamp(34px,4.5vw,56px); font-weight:400; letter-spacing:-.045em; margin:6px 0 12px }
+.section-lead { color:var(--quiet); font-size:15px; line-height:1.7; margin:0 0 32px }
+.record-meta { display:grid; gap:12px; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:20px 0; margin:30px 0 }
+.record-meta div { display:grid; grid-template-columns:170px 1fr; gap:15px }
+.record-meta dt { color:var(--quiet); font-size:12px }
+.record-meta dd { margin:0; font-size:14px }
+.record-meta a, .tag:hover { text-decoration:underline }
+@media(max-width:650px) { .mast nav {gap:9px 13px}.mast nav a {font-size:12px}.record-meta div{grid-template-columns:1fr;gap:4px} }

@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('exhibitions')).sort((a,b)=>b.data.visitedOn.valueOf()-a.data.visitedOn.valueOf());
+const regions = [...new Set(items.map(x=>x.data.region))];
+---
+<Base title="Exhibitions | TOW ARCHIVE">
+  <section class="archive">
+    <h1 class="section-title">Exhibitions & Events</h1>
+    <p class="section-lead">Art encounters, exhibitions, performances and research visits. {items.length} records, 2026.</p>
+    <div class="filters"><div class="filter-languages" aria-label="Region filters">
+      <button data-region="all" aria-pressed="true">All</button>
+      {regions.map(r=><button data-region={r} aria-pressed="false">{r}</button>)}
+    </div><label class="sort-label">Sort <select id="date-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div>
+    <ol class="archive-list" id="archive-list">
+      {items.map((item)=><li class="archive-entry" data-region={item.data.region} data-date={item.data.visitedOn.toISOString()}><time datetime={item.data.visitedOn.toISOString().slice(0,10)}>{item.data.dateLabel.replaceAll('-', '.')}</time><a href={`/exhibitions/${item.id}/`}>{item.data.title}</a><span class="entry-type">{item.data.region}</span></li>)}
+    </ol><p id="empty-message" hidden>No matching entries.</p>
+  </section>
+</Base>
+<script>
+  const rows=[...document.querySelectorAll<HTMLLIElement>('.archive-entry')];
+  const list=document.querySelector<HTMLOListElement>('#archive-list');
+  const regionBtns=[...document.querySelectorAll<HTMLButtonElement>('[data-region]')];
+  const sorter=document.querySelector<HTMLSelectElement>('#date-sort');
+  const empty=document.querySelector<HTMLElement>('#empty-message');
+  let selected='all';
+  function update(){const visible=rows.filter(x=>selected==='all'||x.dataset.region===selected);rows.forEach(x=>x.hidden=!visible.includes(x));visible.sort((a,b)=>{const x=Date.parse(a.dataset.date||''),y=Date.parse(b.dataset.date||'');return sorter?.value==='oldest'?x-y:y-x;}).forEach(x=>list?.appendChild(x));if(empty)empty.hidden=visible.length!==0;}
+  regionBtns.forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.region||'all';regionBtns.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));update();}));
+  sorter?.addEventListener('change',update);
+</script>

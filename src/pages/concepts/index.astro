@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection} from 'astro:content';
+const items=(await getCollection('concepts')).sort((a,b)=>a.data.title.localeCompare(b.data.title));
+---
+<Base title="Themes & Concepts | TOW ARCHIVE"><section class="archive"><h1 class="section-title">Themes & Concepts</h1><p class="section-lead">Browse connected records.</p><ol class="archive-list">{items.map(item=><li class="archive-entry"><span class="eyebrow">INDEX</span><a href={`/concepts/${item.id}/`}>{item.data.title}</a></li>)}</ol></section></Base>

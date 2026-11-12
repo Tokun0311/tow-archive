@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths(){return (await getCollection('exhibitions')).map(item=>({params:{slug:item.id},props:{item}}));}
+const {item}=Astro.props;
+const {Content}=await render(item);
+const people = await getCollection('people');
+const institutions = await getCollection('institutions');
+const concepts = await getCollection('concepts');
+const personById = new Map(people.map(x=>[x.id,x]));
+const inst = institutions.find(x=>x.id===item.data.institution);
+const conceptById = new Map(concepts.map(x=>[x.id,x]));
+---
+<Base title={`${item.data.title} | TOW ARCHIVE`}>
+  <article class="article">
+    <a class="eyebrow" href="/exhibitions/">← Exhibitions</a>
+    <h1>{item.data.title}</h1>
+    <p class="lead">{item.data.region} · {item.data.location} · {item.data.kind}</p>
+    <dl class="record-meta">
+      <div><dt>Visited</dt><dd>{item.data.dateLabel.replaceAll('-','.')}.2026</dd></div>
+      {item.data.exhibitionEnd && <div><dt>Exhibition end (provisional)</dt><dd>{item.data.exhibitionEnd.toISOString().slice(0,10)}</dd></div>}
+      <div><dt>Archive status</dt><dd>{item.data.verification==='needs-review'?'Details to verify':'Recorded; independent verification pending'}</dd></div>
+      {inst && <div><dt>Institution</dt><dd><a href={`/institutions/${inst.id}/`}>{inst.data.name}</a></dd></div>}
+    </dl>
+    <div class="tags">
+      {item.data.artists.map((id)=>personById.get(id)).filter(Boolean).map(p=><a class="tag" href={`/people/${p.id}/`}>{p.data.name}</a>)}
+      {item.data.concepts.map((id)=>conceptById.get(id)).filter(Boolean).map(c=><a class="tag" href={`/concepts/${c.id}/`}>{c.data.title}</a>)}
+    </div>
+    <div class="prose"><Content/></div>
+    <p class="note">Archive note: visit dates are based on personal records; other details should be checked against organizer sources before citing academically.</p>
+  </article>
+</Base>
