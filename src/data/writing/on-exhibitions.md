@@ -5,7 +5,7 @@ type: "Research note"
 language: "EN"
 description: "A sample entry demonstrating how research questions can become a published note. Replace with your own text."
 tags: ["Exhibition histories", "Curatorial studies"]
-draft: false
+draft: true
 ---
 **DEMONSTRATION CONTENT — not an actual essay by Tow Deng.**
 

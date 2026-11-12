@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('entries', ({data}) => !data.draft))
+  .sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Writing | TOW ARCHIVE" description="Essays, reviews and research notes by Tow Deng.">
+  <section class="archive writing-archive">
+    <p class="eyebrow">TOW ARCHIVE / WRITING</p>
+    <h1 class="section-title">Writing</h1>
+    <p class="section-lead">Essays, exhibition reviews, and research notes. 中文 / 日本語 / English.</p>
+    {posts.length > 0 ? (
+      <ol class="archive-list" aria-label="Published writing">
+        {posts.map(post => <li class="archive-entry writing-entry">
+          <time datetime={post.data.date.toISOString().slice(0,10)}>{post.data.date.toISOString().slice(0,10)}</time>
+          <div class="writing-item"><a href={`/writing/${post.id}/`}>{post.data.title}</a><p>{post.data.description}</p></div>
+          <span class="entry-type">{post.data.type} · {post.data.language}</span>
+        </li>)}
+      </ol>
+    ) : (
+      <div class="writing-empty">
+        <p>Writing in progress.</p>
+        <p>Essays, reviews and research notes will appear here when published.</p>
+      </div>
+    )}
+  </section>
+</Base>

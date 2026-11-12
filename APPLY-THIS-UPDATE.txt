@@ -1,0 +1,18 @@
+TOW ARCHIVE — Navigation + Writing + Editorial Note Fix
+
+UPDATED:
+- The Exhibition detail template displays the editorial attribution exactly once.
+- All 63 exhibition markdown files no longer have repeated editorial note footers.
+- The header navigation includes Writing.
+- /writing/ is an index page, showing a calm empty state until a real essay is published.
+- Draft demonstration article is hidden.
+- WRITING-GUIDE.md explains how to publish essays and reviews.
+
+INSTALL:
+1. Extract zip. Copy the INSIDE CONTENTS of tow-archive/ into your existing project root, merging src and public.
+2. In the project root, run FIX-DUPLICATE-ENTRY.bat if the obsolete 2026-01-21-05.md still exists.
+3. In GitHub Desktop, confirm the obsolete file shows DELETED.
+4. Commit and Push. Cloudflare Pages will deploy if your GitHub integration is enabled.
+5. Check /writing/ and an exhibition page: the editorial attribution should appear only once.
+
+DO NOT copy the extracted folder as a nested folder into the project.
