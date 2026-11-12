@@ -18,8 +18,8 @@ const conceptById = new Map(concepts.map(x=>[x.id,x]));
     <p class="lead">{item.data.region} · {item.data.location} · {item.data.kind}</p>
     <dl class="record-meta">
       <div><dt>Visited</dt><dd>{item.data.dateLabel.replaceAll('-','.')}.2026</dd></div>
-      {item.data.exhibitionEnd && <div><dt>Exhibition end (provisional)</dt><dd>{item.data.exhibitionEnd.toISOString().slice(0,10)}</dd></div>}
-      <div><dt>Archive status</dt><dd>{item.data.verification==='needs-review'?'Details to verify':'Recorded; independent verification pending'}</dd></div>
+      {item.data.exhibitionEnd && <div><dt>Exhibition end</dt><dd>{item.data.exhibitionEnd.toISOString().slice(0,10)}</dd></div>}
+      <div><dt>Archive status</dt><dd>{item.data.verification==='needs-review'?'Details to verify':'Reviewed archive entry'}</dd></div>
       {inst && <div><dt>Institution</dt><dd><a href={`/institutions/${inst.id}/`}>{inst.data.name}</a></dd></div>}
     </dl>
     <div class="tags">
@@ -27,6 +27,6 @@ const conceptById = new Map(concepts.map(x=>[x.id,x]));
       {item.data.concepts.map((id)=>conceptById.get(id)).filter(Boolean).map(c=><a class="tag" href={`/concepts/${c.id}/`}>{c.data.title}</a>)}
     </div>
     <div class="prose"><Content/></div>
-    <p class="note">Archive note: visit dates are based on personal records; other details should be checked against organizer sources before citing academically.</p>
+    <p class="note">Editorial note: visit dates and first-person observations come from personal records. Refer to the source links in each entry for independently documented programme details.</p>
   </article>
 </Base>
