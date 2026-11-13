@@ -1,0 +1,22 @@
+TOW ARCHIVE — 29 FULL RESEARCH ENTRIES
+13 November 2026
+
+This package replaces the short summary bodies of entries 01–29 with substantially expanded editorial drafts based on our conversation, including the first-person observations, curatorial/institutional analysis and research questions.
+
+Each entry is in src/data/exhibitions/ as its own Markdown file.
+Entries 30–63 remain intact.
+The 2026-01-21-05.md duplicate is intentionally not included.
+The site's Writing page is retained.
+
+IMPORTANT: THESE ARE EDITED RECONSTRUCTIONS of the earlier ChatGPT drafts, not byte-for-byte identical copies of the original chat writing blocks. Please review and revise each draft before treating it as a final publication.
+
+Install:
+1. Back up your current site folder.
+2. Extract this ZIP.
+3. Copy everything INSIDE the tow-archive folder into your current project folder, and merge/replace.
+4. In your original project, manually DELETE src/data/exhibitions/2026-01-21-05.md if still present. Folder merging does not delete files.
+5. In GitHub Desktop, confirm the 29 Markdown files are modified and 2026-01-21-05.md is deleted.
+6. Run `npm install` and `npm run build` on your computer. If successful, Commit and Push.
+7. Wait for Cloudflare Pages deployment and refresh.
+
+Validation performed: 63 exhibition Markdown files are present; each of entries 01–29 has a full body and required main sections; original frontmatter preserved. `npm install` did not complete in this environment; an Astro production build has not been verified here.
